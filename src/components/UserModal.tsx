@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 import styles from "../styles/components/UserModal.module.css";
 
 export function UserModal() {
+    const { settingUser } = useContext(UserContext);
+
     return (
         <div className={styles.container}>
             <div className={styles.leftSide}>
@@ -16,9 +20,9 @@ export function UserModal() {
                         <img src="./icons/Git.png" alt="Github" />
                     </div>
                     <div className={styles.gitInput}>
-                        <input type="text" placeholder="Digite seu username" />
+                        <input type="text" name="user" placeholder="Digite seu username" />
                         <button type="button">
-                            <img src="./icons/arrow.png" alt="Arrow" />
+                            <img src="./icons/arrow.png" alt="Arrow" onClick={settingUser} />
                         </button>
                     </div>
                 </div>

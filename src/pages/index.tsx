@@ -10,7 +10,7 @@ import styles from '../styles/pages/Home.module.css';
 import { ChallengeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { UserModal } from '../components/UserModal';
+import { UserContextProvider } from '../contexts/UserContext';
 
 interface HomeProps {
   level: number;
@@ -19,51 +19,45 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
-  const bool = true;
   return (
-    <>
-      { bool ? (
-        <UserModal />
-      ) : (
-          <ChallengesProvider
-            level={props.level}
-            currentExperience={props.currentExperience}
-            challengesCompleted={props.challengesCompleted}
-          >
-            <div className={styles.container}>
-              <Head>
-                <title>Inicio | Move It</title>
-              </Head>
-              <ExperienceBar />
-              <CountdownProvider>
-                <section>
-                  <div>
-                    <Profile />
-                    <CompletedChallenges />
-                    <Countdown />
-                  </div>
-                  <div>
-                    <ChallengeBox />
-                  </div>
-                </section>
-              </CountdownProvider>
-            </div>
-          </ChallengesProvider>
-        )
-      }
-    </>
+    <UserContextProvider>
+      <ChallengesProvider
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+      >
+        <div className={styles.container}>
+          <Head>
+            <title>Inicio | Move It</title>
+          </Head>
+          <ExperienceBar />
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
+      </ChallengesProvider>
+    </UserContextProvider>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+  const { level, currentExperience, challengesCompleted, isLogged } = ctx.req.cookies;
 
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
+      challengesCompleted: Number(challengesCompleted),
     }
   }
 }

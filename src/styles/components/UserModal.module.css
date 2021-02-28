@@ -4,6 +4,9 @@
     background-image: linear-gradient(to bottom, var(--blue-dark), var(--blue));
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .leftSide {
