@@ -10,6 +10,7 @@ import styles from '../styles/pages/Home.module.css';
 import { ChallengeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { UserModal } from '../components/UserModal';
 
 interface HomeProps {
   level: number;
@@ -18,31 +19,39 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
+  const bool = true;
   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Inicio | Move It</title>
-        </Head>
-        <ExperienceBar />
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
+    <>
+      { bool ? (
+        <UserModal />
+      ) : (
+          <ChallengesProvider
+            level={props.level}
+            currentExperience={props.currentExperience}
+            challengesCompleted={props.challengesCompleted}
+          >
+            <div className={styles.container}>
+              <Head>
+                <title>Inicio | Move It</title>
+              </Head>
+              <ExperienceBar />
+              <CountdownProvider>
+                <section>
+                  <div>
+                    <Profile />
+                    <CompletedChallenges />
+                    <Countdown />
+                  </div>
+                  <div>
+                    <ChallengeBox />
+                  </div>
+                </section>
+              </CountdownProvider>
             </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+          </ChallengesProvider>
+        )
+      }
+    </>
   )
 }
 

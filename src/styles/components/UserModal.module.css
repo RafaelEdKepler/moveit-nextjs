@@ -1,3 +1,81 @@
 .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-image: linear-gradient(to bottom, var(--blue-dark), var(--blue));
+    width: 100vw;
+    height: 100vh;
+}
 
+.leftSide {
+    width: 100%;
+    height: 100%;
+}
+
+.rightSide div:first-child {
+    margin: 10rem 0 0 8rem;
+}
+
+.rightSide div:last-child {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.rightSide strong {
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 5rem;
+    margin-left: 6rem;
+}
+
+.gitInput {
+    flex-direction: row !important;
+    margin-top: 1rem;
+    margin-left: 6rem;
+}
+
+.gitInput input {
+    width: 20rem;
+    height: 3rem;
+    margin-right: 0;
+    border-radius: 2px;
+    border: none;
+    background-image:  linear-gradient(to right, var(--blue-dark), var(--blue));
+    color: var(--blue-text);
+    padding-left: 1.5rem;
+}
+
+.gitInput input::-moz-placeholder {
+    color: var(--blue-text);
+}
+
+.gitInput input::-webkit-input-placeholder {
+    color: var(--blue-text);
+}
+
+.gitInput input::-ms-input-placeholder {
+    color: orange;
+    font: 12px verdana, arial, sans-serif;
+ }
+
+.gitInput button, .gitInput button img {
+    width: 3rem;
+    height: 3rem;
+    background: transparent;
+    border: 0;
+    font-size: 0px;
+}
+
+.gitInput button img {
+    margin: 0;
+}
+
+.gitImage {
+    margin-left: 6rem;
+    margin-top: 1rem;
+}
+
+.gitImage img {
+    width: 20rem;
 }
