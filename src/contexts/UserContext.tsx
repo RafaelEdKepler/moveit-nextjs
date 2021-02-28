@@ -4,7 +4,8 @@ import Cookies from 'js-cookie';
 import { UserModal } from "../components/UserModal";
 
 interface UserContextData {
-    settingUser: () => void;
+    settingUser: (event) => void;
+    isLogged: boolean;
     avatar: string;
     user: string;
 }
