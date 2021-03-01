@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import Cookies from 'js-cookie';
-import { UserModal } from "../components/UserModal";
+import { UserModal } from '../components/UserModal/index';
 
 interface UserContextData {
     settingUser: (event) => void;

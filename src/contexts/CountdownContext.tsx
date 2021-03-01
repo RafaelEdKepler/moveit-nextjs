@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { Countdown } from "../components/Countdown";
 import { ChallengesContext } from "./ChallengesContext";
 
 let countdownTimeout: NodeJS.Timeout;
