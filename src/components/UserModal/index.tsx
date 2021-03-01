@@ -1,32 +1,32 @@
 import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
-import styles from "../styles/components/UserModal.module.css";
+import { UserContext } from "../../contexts/UserContext";
+import { Container, LeftSide, RightSide, GitInput, GitImage } from './style';
 
 export function UserModal() {
     const { settingUser } = useContext(UserContext);
 
     return (
-        <div className={styles.container}>
-            <div className={styles.leftSide}>
+        <Container>
+            <LeftSide>
                 <img src="./background.png" alt="Imagem de fundo" />
-            </div>
-            <div className={styles.rightSide}>
+            </LeftSide>
+            <RightSide>
                 <div>
                     <img src="./Logo.png" alt="Logo" />
                 </div>
                 <div>
                     <strong>Bem-vindo</strong>
-                    <div className={styles.gitImage}>
+                    <GitImage>
                         <img src="./icons/Git.png" alt="Github" />
-                    </div>
-                    <div className={styles.gitInput}>
+                    </GitImage>
+                    <GitInput>
                         <input type="text" name="user" placeholder="Digite seu username" />
                         <button type="button">
                             <img src="./icons/arrow.png" alt="Arrow" onClick={settingUser} />
                         </button>
-                    </div>
+                    </GitInput>
                 </div>
-            </div>
-        </div>
+            </RightSide>
+        </Container>
     )
 }
