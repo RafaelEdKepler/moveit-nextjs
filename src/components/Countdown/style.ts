@@ -5,7 +5,8 @@ export const CountdownContainer = styled.div`
     align-items: center;
     font-family: Rajdhani;
     font-weight: 600;
-    color: var(--title);
+    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.secundary};
 
 
     & > div {

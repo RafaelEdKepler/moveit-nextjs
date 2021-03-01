@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ChallengeBoxContainer = styled.div`
     height: 100%;
 
-    background: var(--white);
+    background: ${props => props.theme.colors.secundary};
     border-radius: 5px;
     box-shadow: 0 0 60 rgba(0, 0, 0, 0.05);
     padding: 1.5rem 2rem;
@@ -25,6 +25,7 @@ export const ChallengeNotActive = styled.div`
         font-size: 1.5rem;
         font-weight: 500;
         line-height: 1.4;
+        color: ${props => props.theme.colors.text}
     }
 
     p {
@@ -34,6 +35,7 @@ export const ChallengeNotActive = styled.div`
         line-height: 1.4;
         max-width: 70%;
         margin-top: 3rem;
+        color: ${props => props.theme.colors.text}
     }
 
     img {
@@ -51,6 +53,7 @@ export const ChallengeActive = styled.div`
         font-weight: 600;25
         padding: 0 2rem 1.5rem;
         border-bottom: 1px solid var(--gray-line);
+        color: ${props => props.theme.colors.text}
 
     }
 
@@ -60,6 +63,7 @@ export const ChallengeActive = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        color: ${props => props.theme.colors.text}
 
     }
 
@@ -68,11 +72,13 @@ export const ChallengeActive = styled.div`
         font-size: 2rem;
         color: var(--title);
         margin: 1.5rem 0 1rem;
+        color: ${props => props.theme.colors.text}
 
     }
 
     p {
         line-height: 1.5;
+        color: ${props => props.theme.colors.text}
 
     }
 
@@ -80,6 +86,7 @@ export const ChallengeActive = styled.div`
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+        color: ${props => props.theme.colors.text}
 
         button {
             height: 3rem;
