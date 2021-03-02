@@ -6,14 +6,15 @@ export default {
         backgroundLight: '#FFFFFF',
         backgroundOverlay: 'rgba(255, 255, 255, 0.8)',
         grayLine: '#DCDDE0',
-        text: '#777777',
+        text: '#666666',
         textHighlight: '#B2B9FF',
         title: '#2E384D',
         red: '#E83F5B',
         green: '#4CD62B',
-        purple: '#6E40C9',
-        purpleDark: '#5931A9',
+        blue: '#5965E0',
+        blueDark: '#4953B8',
         twitter: '#2AA9E0',
+        experienceBar: '#4CD62B'
       },
 }
 

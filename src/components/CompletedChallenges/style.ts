@@ -14,11 +14,9 @@ export const CompletedChallengesContainer = styled.div`
 
     span:first-child {
         font-size: 1.25rem;
-        color: ${props => props.theme.colors.text};
     }
 
     span:last-child {
         font-size: 1.5rem;
-        color: ${props => props.theme.colors.text};
     }
 `;

@@ -11,8 +11,9 @@ export default {
         title: '#CCD6F6',
         red: '#C53030',
         green: '#4CD62B',
-        purple: '#6E40C9',
-        purpleDark: '#5931A9',
+        blue: '#6E40C9',
+        blueDark: '#5931A9',
         twitter: '#2AA9E0',
+        experienceBar: '#6E40C9'
       }
 }
