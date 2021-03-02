@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ExpBar = styled.header`
     display: flex;
     align-items: center;
+    margin-bottom: 2rem;
 
     span {
         font-size: 1rem;
@@ -25,7 +26,7 @@ export const ExpBar = styled.header`
     }
 `;
 
-export const CurrentExperience = styled.span `
+export const CurrentExperience = styled.span`
     position: absolute;
     top: 12px;
     transform: translateX(-50%);

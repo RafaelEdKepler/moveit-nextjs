@@ -4,7 +4,7 @@ import GlobalStyle from '../styles/global';
 import { ThemeProvider } from 'styled-components';
 import light from '../styles/Themes/light';
 import dark from '../styles/Themes/dark';
-import {useState} from 'react';
+import { useState } from 'react';
 
 import { Header } from '../components/Header/index';
 
@@ -17,6 +17,7 @@ import { Profile } from '../components/Profile/index';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { UserContextProvider } from '../contexts/UserContext';
+import Switch from 'react-switch';
 
 interface HomeProps {
   level: number;
@@ -32,34 +33,46 @@ export default function Home(props: HomeProps) {
   }
 
   return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle/>
-        <UserContextProvider>
-          <ChallengesProvider
-            level={props.level}
-            currentExperience={props.currentExperience}
-            challengesCompleted={props.challengesCompleted}
-          >
-            <div className={styles.container}>
-              <Head>
-                <title>Inicio | Move It</title>
-              </Head>
-              <ExperienceBar />
-              <CountdownProvider>
-                <section>
-                  <div>
-                    <Profile />
-                    <CompletedChallenges />
-                    <Countdown />
-                  </div>
-                  <div>
-                    <ChallengeBox />
-                  </div>
-                </section>
-              </CountdownProvider>
-            </div>
-          </ChallengesProvider>
-        </UserContextProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <UserContextProvider>
+        <ChallengesProvider
+          level={props.level}
+          currentExperience={props.currentExperience}
+          challengesCompleted={props.challengesCompleted}
+        >
+          <div className={styles.container}>
+            <Head>
+              <title>Inicio | Move It</title>
+            </Head>
+            <ExperienceBar />
+            <Switch
+              onChange={toggleTheme}
+              checked={theme === dark ? true : false}
+              checkedIcon={false}
+              uncheckedIcon={false}
+              height={10}
+              width={30}
+              handleDiameter={20}
+              offColor='#000'
+              onColor='#FFF'
+
+            />
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </section>
+            </CountdownProvider>
+          </div>
+        </ChallengesProvider>
+      </UserContextProvider>
     </ThemeProvider>
   )
 }
