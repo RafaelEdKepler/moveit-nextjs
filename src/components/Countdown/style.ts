@@ -5,7 +5,7 @@ export const CountdownContainer = styled.div`
     align-items: center;
     font-family: Rajdhani;
     font-weight: 600;
-    color: var(--title);
+    color: ${props => props.theme.colors.text};
 
 
     & > div {
@@ -15,8 +15,8 @@ export const CountdownContainer = styled.div`
         align-items: center;
         justify-content: space-evenly;
 
-        background: var(--white);
-        box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+        background: ${props => props.theme.colors.backgroundLight};
+        box-shadow: ${props => props.theme.boxShadow};
         border-radius: 5px;
         font-size: 8.5rem;
         text-align: center;
@@ -24,14 +24,15 @@ export const CountdownContainer = styled.div`
 
     & > div span {
         flex: 1;
+        color: ${props => props.theme.colors.title};
     }
 
     & > div span:first-child {
-        border-right: 1px solid #f0f1f3;
+        border-right: 1px solid ${props => props.theme.colors.background};
     }
 
     & > div span:last-child {
-        border-left: 1px solid #f0f1f3;
+        border-right: 1px solid ${props => props.theme.colors.background};
     }
 
     & > span {
@@ -49,7 +50,7 @@ export const CountdownButton = styled.button`
     justify-content: center;
     border: 0;
     border-radius: 5px;
-    background: var(--blue);
+    background: ${props => props.theme.colors.blue};;
     color: var(--white);
     font-size: 1.25rem;
     font-weight: 600;
@@ -57,8 +58,14 @@ export const CountdownButton = styled.button`
 
 
     &:not([disabled]):hover {
-        background: var(--blue-dark);
+        background: ${props => props.theme.colors.blueDark};;
     }
+
+    &:disabled {
+        background: ${props => props.theme.colors.backgroundLight};
+        border-bottom: 4px solid ${props => props.theme.colors.green};
+        cursor: not-allowed;
+      }
 
     &:focus {
         outline: 0;
