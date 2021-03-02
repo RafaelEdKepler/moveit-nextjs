@@ -4,7 +4,9 @@ import GlobalStyle from '../styles/global';
 import { ThemeProvider } from 'styled-components';
 import light from '../styles/Themes/light';
 import dark from '../styles/Themes/dark';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import Cookies from 'js-cookie';
 
 import { Header } from '../components/Header/index';
 
@@ -23,14 +25,19 @@ interface HomeProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
+  theme: string;
 }
 
 export default function Home(props: HomeProps) {
-  const [theme, setTheme] = useState(dark);
+  const [theme, setTheme] = useState(props.theme === 'dark' ? dark : light);
 
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   }
+
+  useEffect(function () {
+    Cookies.set('theme', theme === dark ? 'dark' : light);
+  }, [theme]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -79,13 +86,14 @@ export default function Home(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { level, currentExperience, challengesCompleted, isLogged } = ctx.req.cookies;
+  const { level, currentExperience, challengesCompleted, theme } = ctx.req.cookies;
 
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
+      theme: String(theme)
     }
   }
 }
