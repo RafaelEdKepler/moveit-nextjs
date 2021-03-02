@@ -4,7 +4,7 @@ import GlobalStyle from '../styles/global';
 import { ThemeProvider } from 'styled-components';
 import light from '../styles/Themes/light';
 import dark from '../styles/Themes/dark';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Cookies from 'js-cookie';
 
@@ -18,7 +18,7 @@ import { ExperienceBar } from '../components/ExperienceBar/index';
 import { Profile } from '../components/Profile/index';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { UserContextProvider } from '../contexts/UserContext';
+import { UserContext, UserContextProvider } from '../contexts/UserContext';
 import Switch from 'react-switch';
 
 interface HomeProps {
@@ -26,11 +26,13 @@ interface HomeProps {
   currentExperience: number;
   challengesCompleted: number;
   theme: string;
+  isLogged: boolean;
 }
 
 export default function Home(props: HomeProps) {
   const [theme, setTheme] = useState(props.theme === 'dark' ? dark : light);
-
+  const [isLogged, setIsLogged] = useState(props.isLogged);
+  console.log(props);
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   }
@@ -39,6 +41,10 @@ export default function Home(props: HomeProps) {
     Cookies.set('theme', theme === dark ? 'dark' : light);
   }, [theme]);
 
+  useEffect(function () {
+    setIsLogged(Boolean(Cookies.get('isLogged')));
+  }, [Cookies.get('isLogged')]);
+  console.log(isLogged);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -48,36 +54,39 @@ export default function Home(props: HomeProps) {
           currentExperience={props.currentExperience}
           challengesCompleted={props.challengesCompleted}
         >
-          <div className={styles.container}>
-            <Head>
-              <title>Inicio | Move It</title>
-            </Head>
-            <ExperienceBar />
-            <Switch
-              onChange={toggleTheme}
-              checked={theme === dark ? true : false}
-              checkedIcon={false}
-              uncheckedIcon={false}
-              height={10}
-              width={30}
-              handleDiameter={20}
-              offColor='#000'
-              onColor='#FFF'
+          {isLogged && (
+            <div className={styles.container}>
 
-            />
-            <CountdownProvider>
-              <section>
-                <div>
-                  <Profile />
-                  <CompletedChallenges />
-                  <Countdown />
-                </div>
-                <div>
-                  <ChallengeBox />
-                </div>
-              </section>
-            </CountdownProvider>
-          </div>
+              <Head>
+                <title>Inicio | Move It</title>
+              </Head>
+
+              <ExperienceBar />
+              <Switch
+                onChange={toggleTheme}
+                checked={theme === dark ? true : false}
+                checkedIcon={false}
+                uncheckedIcon={false}
+                height={10}
+                width={30}
+                handleDiameter={20}
+                offColor='#000'
+                onColor='#FFF'
+
+              />
+              <CountdownProvider>
+                <section>
+                  <div>
+                    <Profile />
+                    <CompletedChallenges />
+                    <Countdown />
+                  </div>
+                  <div>
+                    <ChallengeBox />
+                  </div>
+                </section>
+              </CountdownProvider>
+            </div>)}
         </ChallengesProvider>
       </UserContextProvider>
     </ThemeProvider>
@@ -86,14 +95,15 @@ export default function Home(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { level, currentExperience, challengesCompleted, theme } = ctx.req.cookies;
+  const { level, currentExperience, challengesCompleted, theme, isLogged } = ctx.req.cookies;
 
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      theme: String(theme)
+      theme: String(theme),
+      isLogged: isLogged ? Boolean(isLogged) : false
     }
   }
 }
