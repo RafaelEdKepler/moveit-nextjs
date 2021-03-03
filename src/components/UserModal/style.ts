@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-image: linear-gradient(to bottom, var(--blue-dark), var(--blue));

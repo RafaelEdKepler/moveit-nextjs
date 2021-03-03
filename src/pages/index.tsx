@@ -32,7 +32,6 @@ interface HomeProps {
 export default function Home(props: HomeProps) {
   const [theme, setTheme] = useState(props.theme === 'dark' ? dark : light);
   const [isLogged, setIsLogged] = useState(props.isLogged);
-  console.log(props);
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   }
@@ -44,7 +43,7 @@ export default function Home(props: HomeProps) {
   useEffect(function () {
     setIsLogged(Boolean(Cookies.get('isLogged')));
   }, [Cookies.get('isLogged')]);
-  console.log(isLogged);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
