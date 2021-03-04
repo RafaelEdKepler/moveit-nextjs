@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import GlobalStyle from '../styles/global';
 import { ThemeProvider } from 'styled-components';
@@ -55,10 +54,6 @@ export default function Home(props: HomeProps) {
         >
           {isLogged && (
             <div className={styles.container}>
-
-              <Head>
-                <title>Inicio | Move It</title>
-              </Head>
 
               <ExperienceBar />
               <Switch

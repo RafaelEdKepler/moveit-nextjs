@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { UserModal } from '../components/UserModal/index';
+import Head from "next/head";
 
 interface UserContextData {
     settingUser: (event) => void;
@@ -53,6 +54,9 @@ export function UserContextProvider({ children }) {
             user,
             avatar
         }}>
+            <Head>
+                <title>Inicio | Move It</title>
+            </Head>
             {children}
             {!isLogged && (<UserModal />)}
         </UserContext.Provider>
